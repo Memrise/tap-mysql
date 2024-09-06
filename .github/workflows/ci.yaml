@@ -46,7 +46,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build db test container
-        run: docker-compose up -d mariadb_server1
+        run: docker compose up -d mariadb_server1
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
@@ -67,7 +67,7 @@ jobs:
         run: make integration_test extra_args=--cover-min-percentage=85
 
       - name: Shutdown db test container
-        run: docker-compose down mariadb_server1
+        run: docker compose down mariadb_server1
 
   integration_test_mysql:
     name: Intergation tests with Mysql database
@@ -81,7 +81,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build db test container
-        run: docker-compose up -d mysql_server
+        run: docker compose up -d mysql_server
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
@@ -102,4 +102,4 @@ jobs:
         run: make integration_test extra_args=--cover-min-percentage=84
 
       - name: Shutdown db test container
-        run: docker-compose down mysql_server
+        run: docker compose down mysql_server
